@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-const NODEJS_PROJECT_ROOT = 'www/nodejs-project';
+const NODEJS_PROJECT_ROOT = 'www/application/app/nodejs-project';
 const FILE_LIST_PATH = 'platforms/android/assets/file.list';
 const DIR_LIST_PATH = 'platforms/android/assets/dir.list';
 

@@ -78,7 +78,7 @@ NSString* allChannelsListenerCallbackId = nil;
 NSString* const NODEJS_DLOPEN_OVERRIDE_FILENAME = @"override-dlopen-paths-preload.js";
 
 // path where the nodejs-project is contained inside the Application package.
-NSString* const NODE_ROOT = @"/www/nodejs-project/";
+NSString* const NODE_ROOT = @"/www/application/app/nodejs-project/";
 
 + (CDVNodeJS*) activeInstance {
   return activeInstance;

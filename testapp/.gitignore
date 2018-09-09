@@ -5,6 +5,6 @@ bin/*
 plugins/*
 platforms/*
 node_modules/*
-www/nodejs-project/*
+www/application/app/nodejs-project/*
 temp-module-copy/*
 .DS_Store

@@ -61,7 +61,7 @@ if (shouldRebuildNativeModules==null) {
 // If build native modules preference is not set, try to find .gyp files to turn it on.
     shouldRebuildNativeModules="0";
     def gyp_files_tree = fileTree(
-        dir: "${project.projectDir}/assets/www/nodejs-project/",
+        dir: "${project.projectDir}/assets/www/application/app/nodejs-project/",
         include: "**/*.gyp"
     );
     gyp_files_tree.visit { gypFile ->
@@ -168,7 +168,7 @@ if ("1".equals(shouldRebuildNativeModules)) {
         task "CopyNodeProjectAssets${abi_name}" {
             description = "Copying node assets to build native modules for ${abi_name}."
             inputs.files fileTree (
-                    dir: "${project.projectDir}/assets/www/nodejs-project/"
+                    dir: "${project.projectDir}/assets/www/application/app/nodejs-project/"
                 ).exclude({
                     details -> // We shouldn't need to rebuild native code if there are only changes in the Node.js project javascript files.
                         !details.isDirectory() &&
@@ -179,7 +179,7 @@ if ("1".equals(shouldRebuildNativeModules)) {
             doLast {
                 delete "${rootProject.buildDir}/nodejs-native-assets-temp-build/nodejs-native-assets-${abi_name}/"
                 copy {
-                    from "${project.projectDir}/assets/www/nodejs-project/"
+                    from "${project.projectDir}/assets/www/application/app/nodejs-project/"
                     into "${rootProject.buildDir}/nodejs-native-assets-temp-build/nodejs-native-assets-${abi_name}/nodejs-project/"
                     // Symlinks to binaries are resolved by cordova prepare and Gradle during the copy, causing build time errors.
                     // The original project's .bin folder will be added to the path while building in the BuildNpmModules tasks.
@@ -228,7 +228,7 @@ if ("1".equals(shouldRebuildNativeModules)) {
             // Adds the original project .bin to the path. It's a workaround
             // to correctly build some modules that depend on symlinked modules,
             // like node-pre-gyp.
-            String original_project_bin = "${rootProject.projectDir}/../../www/nodejs-project/node_modules/.bin";
+            String original_project_bin = "${rootProject.projectDir}/../../www/application/app/nodejs-project/node_modules/.bin";
             if(file(original_project_bin).exists()) {
                 environment ('PATH', "${original_project_bin}" + System.getProperty("path.separator") + "${System.env.PATH}")
             }

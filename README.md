@@ -209,7 +209,7 @@ $ cordova platform add ios
 $ cordova plugin add nodejs-mobile-cordova
 $ cordova plugin add cordova-plugin-console
 ```
-You can either manually create the `./www/nodejs-project/` folder, the `./www/nodejs-project/main.js` file and edit `./www/js/index.js` or use the provided helper script to do it automatically. The helper script copies a more extended sample compared to the one provided with the manual steps.
+You can either manually create the `./www/application/app/nodejs-project/` folder, the `./www/application/app/nodejs-project/main.js` file and edit `./www/js/index.js` or use the provided helper script to do it automatically. The helper script copies a more extended sample compared to the one provided with the manual steps.
 
 ---
 #### Set up project files using the helper script
@@ -218,9 +218,9 @@ If you choose to use the helper script, you will be asked to overwrite the exist
 $ ./plugins/nodejs-mobile-cordova/install/sample-project/copy-sample-project.sh
 $ overwrite www/js/index.js? (y/n [n]) y
 ```
-The script creates the `./www/nodejs-project/` folder and adds two files:
- - `./www/nodejs-project/main.js`
- - `./www/nodejs-project/package.json`
+The script creates the `./www/application/app/nodejs-project/` folder and adds two files:
+ - `./www/application/app/nodejs-project/main.js`
+ - `./www/application/app/nodejs-project/package.json`
 
 The changes in `./www/js/index.js` are needed to invoke Node.js for Mobile Apps from Cordova.
 
@@ -228,11 +228,11 @@ The changes in `./www/js/index.js` are needed to invoke Node.js for Mobile Apps 
 #### Set up project files using the manual steps
 If you want to set up the project manually, first create the project folder for the Node.js files:
 ```bash
-$ mkdir www/nodejs-project
+$ mkdir www/application/app/nodejs-project
 ```
 Then, with your editor of choice (we use VS Code in this example) create the `main.js` script file:
 ```bash
-$ code www/nodejs-project/main.js
+$ code www/application/app/nodejs-project/main.js
 ```
 Add the following code to `main.js` and save the file:
 ```js
@@ -321,20 +321,20 @@ If you used the helper script, the output will look like this:
 
 ## Node Modules
 Node modules can be added to the project using `npm`.
-The Node modules have to be installed in the `./www/nodejs-project/` folder and a `package.json` file needs to be added to the folder.
+The Node modules have to be installed in the `./www/application/app/nodejs-project/` folder and a `package.json` file needs to be added to the folder.
 
 If you used the helper script to install the sample project, the `package.json` file is already present and you can proceed adding the desired Node modules.
 
-If you don't know how to create the `package.json` file, just copy the sample one from `./plugins/nodejs-mobile-cordova/install/sample-project/www/nodejs-project/package.json`.
+If you don't know how to create the `package.json` file, just copy the sample one from `./plugins/nodejs-mobile-cordova/install/sample-project/www/application/app/nodejs-project/package.json`.
 Then proceed with the installation of the Node modules you want to add to your Node.js project:
 ```
-$ cd www/nodejs-project/
+$ cd www/application/app/nodejs-project/
 $ npm install module-name
 ```
 
 Rebuild your Cordova project so that the newly added Node modules are added to the Cordova application.
 
-On Android, the plugin extracts the project files and the Node modules from the APK assets in order to make them available to the Node.js for Mobile Apps engine. They are extracted from the APK and copied to a working folder (`context.getFilesDir().getAbsolutePath() + "/www/nodejs-project/"`) when the application is launched for the first time or a new version of the application has been installed.
+On Android, the plugin extracts the project files and the Node modules from the APK assets in order to make them available to the Node.js for Mobile Apps engine. They are extracted from the APK and copied to a working folder (`context.getFilesDir().getAbsolutePath() + "/www/application/app/nodejs-project/"`) when the application is launched for the first time or a new version of the application has been installed.
 Given the project folder will be overwritten after each application update, it should not be used for persistent data storage.
 To expedite the process of extracting the assets files, instead of parsing the assets hierarchy, a list of files `file.list` and a list of folders `dir.list` are created when the application is compiled and then added to the application assets. On Android 6.x and older versions, this allows to work around a serious perfomance bug in the Android assets manager.
 
@@ -342,7 +342,7 @@ To expedite the process of extracting the assets files, instead of parsing the a
 
 On Linux and macOS, there is support for building modules that contain native code.
 
-The plugin automatically detects native modules in `./www/nodejs-project/` by searching for `.gyp`files. It's recommended to have the build prerequisites mentioned in `nodejs-mobile` for [Android](https://github.com/janeasystems/nodejs-mobile#prerequisites-to-build-the-android-library-on-linux-ubuntudebian) and [iOS](https://github.com/janeasystems/nodejs-mobile#prerequisites-to-build-the-ios-framework-library-on-macos). For Android it's also recommended that you set the `ANDROID_NDK_HOME` environment variable in your system.
+The plugin automatically detects native modules in `./www/application/app/nodejs-project/` by searching for `.gyp`files. It's recommended to have the build prerequisites mentioned in `nodejs-mobile` for [Android](https://github.com/janeasystems/nodejs-mobile#prerequisites-to-build-the-android-library-on-linux-ubuntudebian) and [iOS](https://github.com/janeasystems/nodejs-mobile#prerequisites-to-build-the-ios-framework-library-on-macos). For Android it's also recommended that you set the `ANDROID_NDK_HOME` environment variable in your system.
 
 Building native modules for Android can take a long time, since it depends on building a standalone NDK toolchain for each required architecture. The resulting `.node` binaries are then included in the final application in a separate asset path for each architecture and the correct one will be chosen at runtime.
 

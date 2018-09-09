@@ -34,7 +34,7 @@ public class NodeJS extends CordovaPlugin {
   private static AssetManager assetManager = null;
 
   private static String filesDir;
-  private static final String PROJECT_ROOT = "www/nodejs-project";
+  private static final String PROJECT_ROOT = "www/application/app/nodejs-project";
   private static final String BUILTIN_ASSETS = "nodejs-mobile-cordova-assets";
   private static final String BUILTIN_MODULES = "nodejs-mobile-cordova-assets/builtin_modules";
   private static final String TRASH_DIR = "nodejs-project-trash";

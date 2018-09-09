@@ -29,7 +29,7 @@ var app = {
 app.initialize();
 
 // In this example the channel listener handles only two types of messages:
-// - the 'Reply' object type that is defined in the www/nodejs-project/main.js
+// - the 'Reply' object type that is defined in the www/application/app/nodejs-project/main.js
 // - the string type
 // But any other valid JavaScript type can be handled if desired.
 function channelListener(msg) {

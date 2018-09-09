@@ -5,8 +5,8 @@ copySampleFile () {
   cp -i "$SRC_PATH/$1" $1
 }
 
-mkdir -p "www/nodejs-project"
+mkdir -p "www/application/app/nodejs-project"
 
 copySampleFile "www/js/index.js"
-copySampleFile "www/nodejs-project/main.js"
-copySampleFile "www/nodejs-project/package.json"
+copySampleFile "www/application/app/nodejs-project/main.js"
+copySampleFile "www/application/app/nodejs-project/package.json"
